@@ -1,9 +1,17 @@
 package com.project.android.tic_tac_toe.View;
 
+import android.arch.lifecycle.ViewModelProviders;
+import android.databinding.DataBindingUtil;
+import android.support.annotation.VisibleForTesting;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.project.android.tic_tac_toe.Model.Player;
 import com.project.android.tic_tac_toe.R;
+import com.project.android.tic_tac_toe.viewmodel.GameViewModel;
+import com.project.android.tic_tac_toe.databinding.ActivityMainBinding;
+
+import static com.project.android.tic_tac_toe.Utilities.StringUtility.isNullOrEmpty;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initDataBinding(String player1, String player2) {
-        ActivityGameBinding activityGameBinding = DataBindingUtil.setContentView(this, R.layout.activity_game);
+        ActivityMainBinding activityGameBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         gameViewModel = ViewModelProviders.of(this).get(GameViewModel.class);
         gameViewModel.init(player1, player2);
         activityGameBinding.setGameViewModel(gameViewModel);
