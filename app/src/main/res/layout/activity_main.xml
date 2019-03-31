@@ -6,7 +6,7 @@
 
         <variable
             name="gameViewModel"
-            type="com.project.android.tic_tac_toe.viewmodel.GameViewModel" />
+            type="com.project.android.tic_tac_toe.viewmodel.MainActivityViewModel" />
     </data>
 
     <android.support.v7.widget.GridLayout

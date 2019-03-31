@@ -8,17 +8,13 @@ import android.os.Bundle;
 
 import com.project.android.tic_tac_toe.Model.Player;
 import com.project.android.tic_tac_toe.R;
-import com.project.android.tic_tac_toe.viewmodel.GameViewModel;
+import com.project.android.tic_tac_toe.viewmodel.MainActivityViewModel;
 import com.project.android.tic_tac_toe.databinding.ActivityMainBinding;
 
 import static com.project.android.tic_tac_toe.Utilities.StringUtility.isNullOrEmpty;
 
 public class MainActivity extends AppCompatActivity {
-
-    private static final String GAME_BEGIN_DIALOG_TAG = "game_dialog_tag";
-    private static final String GAME_END_DIALOG_TAG = "game_end_dialog_tag";
-    private static final String NO_WINNER = "No one";
-    private GameViewModel gameViewModel;
+    private MainActivityViewModel gameViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     public void promptForPlayers() {
         PlayerList dialog = PlayerList.newInstance(this);
         dialog.setCancelable(false);
-        dialog.show(getSupportFragmentManager(), GAME_BEGIN_DIALOG_TAG);
+        dialog.show(getSupportFragmentManager(), "playerNames displayed");
     }
 
     public void onPlayersSet(String player1, String player2) {
@@ -38,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initDataBinding(String player1, String player2) {
         ActivityMainBinding activityGameBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        gameViewModel = ViewModelProviders.of(this).get(GameViewModel.class);
+        gameViewModel = ViewModelProviders.of(this).get(MainActivityViewModel.class);
         gameViewModel.init(player1, player2);
         activityGameBinding.setGameViewModel(gameViewModel);
         setUpOnGameEndListener();
@@ -50,9 +46,9 @@ public class MainActivity extends AppCompatActivity {
 
     @VisibleForTesting
     public void onGameWinnerChanged(Player winner) {
-        String winnerName = winner == null || isNullOrEmpty(winner.name) ? NO_WINNER : winner.name;
+        String winnerName = winner == null || isNullOrEmpty(winner.name) ? "Match Tied" : winner.name;
         Result dialog = Result.newInstance(this, winnerName);
         dialog.setCancelable(false);
-        dialog.show(getSupportFragmentManager(), GAME_END_DIALOG_TAG);
+        dialog.show(getSupportFragmentManager(), "Result Displayed");
     }
 }

@@ -10,7 +10,7 @@ import com.project.android.tic_tac_toe.Model.Player;
 
 import static com.project.android.tic_tac_toe.Utilities.StringUtility.stringFromNumbers;
 
-public class GameViewModel extends ViewModel {
+public class MainActivityViewModel extends ViewModel {
     public ObservableArrayMap<String, String> cells;
     private Game game;
 

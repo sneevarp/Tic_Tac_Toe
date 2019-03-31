@@ -81,15 +81,6 @@ public class Game {
         return true;
     }
 
-    /**
-     * 2 cells are equal if:
-     * - Both are none null
-     * - Both have non null values
-     * - both have equal values
-     *
-     * @param cells: Cells to check if are equal
-     * @return
-     */
     private boolean areEqual(Cell... cells) {
         if (cells == null || cells.length == 0)
             return false;
