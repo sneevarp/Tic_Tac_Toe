@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void promptForPlayers() {
-        GameBeginDialog dialog = GameBeginDialog.newInstance(this);
+        PlayerList dialog = PlayerList.newInstance(this);
         dialog.setCancelable(false);
         dialog.show(getSupportFragmentManager(), GAME_BEGIN_DIALOG_TAG);
     }
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     @VisibleForTesting
     public void onGameWinnerChanged(Player winner) {
         String winnerName = winner == null || isNullOrEmpty(winner.name) ? NO_WINNER : winner.name;
-        GameEndDialog dialog = GameEndDialog.newInstance(this, winnerName);
+        Result dialog = Result.newInstance(this, winnerName);
         dialog.setCancelable(false);
         dialog.show(getSupportFragmentManager(), GAME_END_DIALOG_TAG);
     }

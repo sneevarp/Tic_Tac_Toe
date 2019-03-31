@@ -16,7 +16,7 @@ import android.widget.Button;
 
 import com.project.android.tic_tac_toe.R;
 
-public class GameBeginDialog extends DialogFragment {
+public class PlayerList extends DialogFragment {
     private TextInputLayout player1Layout;
     private TextInputLayout player2Layout;
 
@@ -29,8 +29,8 @@ public class GameBeginDialog extends DialogFragment {
     private View rootView;
     private MainActivity activity;
 
-    public static GameBeginDialog newInstance(MainActivity activity) {
-        GameBeginDialog dialog = new GameBeginDialog();
+    public static PlayerList newInstance(MainActivity activity) {
+        PlayerList dialog = new PlayerList();
         dialog.activity = activity;
         return dialog;
     }
@@ -39,9 +39,9 @@ public class GameBeginDialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         initViews();
-        AlertDialog alertDialog = new AlertDialog.Builder(getContext())
+        AlertDialog alertDialog = new AlertDialog.Builder(getContext(),R.style.dialog)
                 .setView(rootView)
-                .setTitle("Game Title")
+                .setTitle("Tic Tac Toe")
                 .setCancelable(false)
                 .setPositiveButton("Done", null)
                 .create();

@@ -3,14 +3,21 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">#000000</item>
+        <item name="colorPrimaryDark">#696969</item>
+        <item name="colorAccent">@color/colorPrimary</item>
+    </style>
+    <style name="dialog" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="colorPrimary">#000000</item>
+        <item name="colorPrimaryDark">#696969</item>
+        <item name="colorAccent">@color/colorPrimary</item>
     </style>
     <style name="CellTextView">
         <item name="android:gravity">center</item>
         <item name="android:textSize">48sp</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:color">#000000</item>
+
     </style>
 
 </resources>

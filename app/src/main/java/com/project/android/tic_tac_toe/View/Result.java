@@ -11,14 +11,14 @@ import android.widget.TextView;
 
 import com.project.android.tic_tac_toe.R;
 
-public class GameEndDialog extends DialogFragment {
+public class Result extends DialogFragment {
 
     private View rootView;
     private MainActivity activity;
     private String winnerName;
 
-    public static GameEndDialog newInstance(MainActivity activity, String winnerName) {
-        GameEndDialog dialog = new GameEndDialog();
+    public static Result newInstance(MainActivity activity, String winnerName) {
+        Result dialog = new Result();
         dialog.activity = activity;
         dialog.winnerName = winnerName;
         return dialog;
@@ -28,7 +28,7 @@ public class GameEndDialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         initViews();
-        AlertDialog alertDialog = new AlertDialog.Builder(getContext())
+        AlertDialog alertDialog = new AlertDialog.Builder(getContext(),R.style.dialog)
                 .setView(rootView)
                 .setCancelable(false)
                 .setPositiveButton("Done", ((dialog, which) -> onNewGame()))
