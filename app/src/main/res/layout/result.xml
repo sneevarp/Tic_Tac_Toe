@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="8dp"
-        android:text="@string/game_end_dialog_headline" />
+        android:text="Winner" />
 
 
     <TextView
@@ -20,7 +20,6 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="8dp"
-        android:textStyle="bold"
-        tools:text="Husayn" />
+        android:textStyle="bold" />
 
 </LinearLayout>

@@ -43,7 +43,7 @@ public class PlayerList extends DialogFragment {
                 .setView(rootView)
                 .setTitle("Tic Tac Toe")
                 .setCancelable(false)
-                .setPositiveButton("Done", null)
+                .setPositiveButton("OK", null)
                 .create();
         alertDialog.setCanceledOnTouchOutside(false);
         alertDialog.setCancelable(false);
