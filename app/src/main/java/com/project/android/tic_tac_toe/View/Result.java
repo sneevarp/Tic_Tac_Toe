@@ -40,7 +40,7 @@ public class Result extends DialogFragment {
 
     private void initViews() {
         rootView = LayoutInflater.from(getContext())
-                .inflate(R.layout.game_end_dialog, null, false);
+                .inflate(R.layout.result, null, false);
         ((TextView) rootView.findViewById(R.id.tv_winner)).setText(winnerName);
     }
 

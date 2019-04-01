@@ -6,12 +6,10 @@ import android.support.annotation.VisibleForTesting;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.project.android.tic_tac_toe.Model.Player;
+import com.project.android.tic_tac_toe.User;
 import com.project.android.tic_tac_toe.R;
 import com.project.android.tic_tac_toe.viewmodel.MainActivityViewModel;
 import com.project.android.tic_tac_toe.databinding.ActivityMainBinding;
-
-import static com.project.android.tic_tac_toe.Utilities.StringUtility.isNullOrEmpty;
 
 public class MainActivity extends AppCompatActivity {
     private MainActivityViewModel gameViewModel;
@@ -45,10 +43,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @VisibleForTesting
-    public void onGameWinnerChanged(Player winner) {
+    public void onGameWinnerChanged(User winner) {
         String winnerName = winner == null || isNullOrEmpty(winner.name) ? "Match Tied" : winner.name;
         Result dialog = Result.newInstance(this, winnerName);
         dialog.setCancelable(false);
         dialog.show(getSupportFragmentManager(), "Result Displayed");
+    }
+
+    public static boolean isNullOrEmpty(String value) {
+        return value == null || value.length() == 0;
     }
 }

@@ -1,32 +1,30 @@
-package com.project.android.tic_tac_toe.Model;
+package com.project.android.tic_tac_toe;
 
 import android.arch.lifecycle.MutableLiveData;
 import android.util.Log;
-
-import static com.project.android.tic_tac_toe.Utilities.StringUtility.isNullOrEmpty;
 
 public class Game {
     private static final String TAG = Game.class.getSimpleName();
     private static final int BOARD_SIZE = 3;
 
-    public Player player1;
-    public Player player2;
+    public User user1;
+    public User user2;
 
-    public Player currentPlayer = player1;
-    public Cell[][] cells;
+    public User currentUser = user1;
+    public Block[][] blocks;
 
-    public MutableLiveData<Player> winner = new MutableLiveData<>();
+    public MutableLiveData<User> winner = new MutableLiveData<>();
 
     public Game(String playerOne, String playerTwo) {
-        cells = new Cell[BOARD_SIZE][BOARD_SIZE];
-        player1 = new Player(playerOne, "x");
-        player2 = new Player(playerTwo, "o");
-        currentPlayer = player1;
+        blocks = new Block[BOARD_SIZE][BOARD_SIZE];
+        user1 = new User(playerOne, "x");
+        user2 = new User(playerTwo, "o");
+        currentUser = user1;
     }
 
     public boolean hasGameEnded() {
         if (hasThreeSameHorizontalCells() || hasThreeSameVerticalCells() || hasThreeSameDiagonalCells()) {
-            winner.setValue(currentPlayer);
+            winner.setValue(currentUser);
             return true;
         }
 
@@ -41,7 +39,7 @@ public class Game {
     public boolean hasThreeSameHorizontalCells() {
         try {
             for (int i = 0; i < BOARD_SIZE; i++)
-                if (areEqual(cells[i][0], cells[i][1], cells[i][2]))
+                if (areEqual(blocks[i][0], blocks[i][1], blocks[i][2]))
                     return true;
 
             return false;
@@ -54,7 +52,7 @@ public class Game {
     public boolean hasThreeSameVerticalCells() {
         try {
             for (int i = 0; i < BOARD_SIZE; i++)
-                if (areEqual(cells[0][i], cells[1][i], cells[2][i]))
+                if (areEqual(blocks[0][i], blocks[1][i], blocks[2][i]))
                     return true;
             return false;
         } catch (NullPointerException e) {
@@ -65,8 +63,8 @@ public class Game {
 
     public boolean hasThreeSameDiagonalCells() {
         try {
-            return areEqual(cells[0][0], cells[1][1], cells[2][2]) ||
-                    areEqual(cells[0][2], cells[1][1], cells[2][0]);
+            return areEqual(blocks[0][0], blocks[1][1], blocks[2][2]) ||
+                    areEqual(blocks[0][2], blocks[1][1], blocks[2][0]);
         } catch (NullPointerException e) {
             Log.e(TAG, e.getMessage());
             return false;
@@ -74,38 +72,42 @@ public class Game {
     }
 
     public boolean isBoardFull() {
-        for (Cell[] row : cells)
-            for (Cell cell : row)
-                if (cell == null || cell.isEmpty())
+        for (Block[] row : blocks)
+            for (Block block : row)
+                if (block == null || block.isEmpty())
                     return false;
         return true;
     }
 
-    private boolean areEqual(Cell... cells) {
-        if (cells == null || cells.length == 0)
+    private boolean areEqual(Block... blocks) {
+        if (blocks == null || blocks.length == 0)
             return false;
 
-        for (Cell cell : cells)
-            if (cell == null || isNullOrEmpty(cell.player.value))
+        for (Block block : blocks)
+            if (block == null || isNullOrEmpty(block.user.value))
                 return false;
 
-        Cell comparisonBase = cells[0];
-        for (int i = 1; i < cells.length; i++)
-            if (!comparisonBase.player.value.equals(cells[i].player.value))
+        Block comparisonBase = blocks[0];
+        for (int i = 1; i < blocks.length; i++)
+            if (!comparisonBase.user.value.equals(blocks[i].user.value))
                 return false;
 
         return true;
     }
 
+    public static boolean isNullOrEmpty(String value) {
+        return value == null || value.length() == 0;
+    }
+
     public void switchPlayer() {
-        currentPlayer = currentPlayer == player1 ? player2 : player1;
+        currentUser = currentUser == user1 ? user2 : user1;
     }
 
     public void reset() {
-        player1 = null;
-        player2 = null;
-        currentPlayer = null;
-        cells = null;
+        user1 = null;
+        user2 = null;
+        currentUser = null;
+        blocks = null;
     }
 
 }

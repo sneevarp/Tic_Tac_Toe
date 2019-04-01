@@ -55,7 +55,7 @@ public class PlayerList extends DialogFragment {
 
     private void initViews() {
         rootView = LayoutInflater.from(getContext())
-                .inflate(R.layout.game_begin_dialog, null, false);
+                .inflate(R.layout.playernames, null, false);
 
         player1Layout = rootView.findViewById(R.id.layout_player1);
         player2Layout = rootView.findViewById(R.id.layout_player2);
